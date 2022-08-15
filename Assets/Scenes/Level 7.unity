@@ -223,7 +223,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh39018
+  m_Name: pb_Mesh30528
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -706,22 +706,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4731300632279539194, guid: e9fcaf69cf804d94e8cd275def246fdd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4731300632336793348, guid: e9fcaf69cf804d94e8cd275def246fdd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4731300632431485102, guid: e9fcaf69cf804d94e8cd275def246fdd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4731300632526760292, guid: e9fcaf69cf804d94e8cd275def246fdd, type: 3}
-      propertyPath: nextLevel
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4731300632753440835, guid: e9fcaf69cf804d94e8cd275def246fdd, type: 3}
       propertyPath: m_Name
       value: ALLSCENEASSET
@@ -770,23 +754,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4731300632949450666, guid: e9fcaf69cf804d94e8cd275def246fdd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4731300633860330348, guid: e9fcaf69cf804d94e8cd275def246fdd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4731300633963683150, guid: e9fcaf69cf804d94e8cd275def246fdd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4731300633963683150, guid: e9fcaf69cf804d94e8cd275def246fdd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4731300634102796674, guid: e9fcaf69cf804d94e8cd275def246fdd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -927,7 +899,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh39064
+  m_Name: pb_Mesh30582
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1559,7 +1531,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh39048
+  m_Name: pb_Mesh30558
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

@@ -8,17 +8,39 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] int nextLevel;
-    [SerializeField] TMP_Text levelText;
+    [SerializeField] Image recticle;
+    [SerializeField] TMP_Text levelText, Coming;
     [SerializeField] GameObject sceneTransition, pauseMenu;
     [SerializeField] Slider distract, SFX, Music;
     public bool paused = false;
+    Transform playerAI, player;
     // Start is called before the first frame update
     void Start()
     {
+        playerAI = FindObjectOfType<PlayerAi>().transform;
+        player = FindObjectOfType<PlayerInteractor>().transform;
         StartCoroutine(DistractCharge());
         levelText.text = "Level " + SceneManager.GetActiveScene().buildIndex;
         if(sceneTransition.activeSelf){ StartCoroutine(HideSceneTransition()); }
     }
+    void Update(){
+        RaycastHit hit;
+        //raycast forwards from player
+        if(Physics.Raycast(player.position, player.forward, out hit)){
+            //check if line of sight from player to cursor + 0.5y
+            Debug.DrawLine(playerAI.position, hit.point + (Vector3.up * 0.5f), Color.red, 0.1f);
+            if(Physics.Linecast(playerAI.position, hit.point + (Vector3.up * 0.5f))){
+                recticle.color = Color.red;
+            }
+            else{ recticle.color = Color.blue; }
+        }
+        else
+        { recticle.color = Color.red; }
+    }
+    public void EnableComing(){
+        Coming.enabled = true;
+    }
+
     IEnumerator HideSceneTransition(){
         while(sceneTransition.transform.localPosition.x > -1920){
             sceneTransition.transform.localPosition = Vector3.Lerp(sceneTransition.transform.localPosition, new Vector3(-1930, 0, 0), 0.1f);

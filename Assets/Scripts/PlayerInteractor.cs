@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerInteractor : MonoBehaviour
 {
     Transform clickEffect;
-    bool checkEnd = false, distractCharged = true;
+    bool checkEnd = false, distractCharged = true, expanding = false;
+    float range = 0.5f;
     Transform EndIco;
     // Start is called before the first frame update
     void Start()
@@ -62,12 +63,18 @@ public class PlayerInteractor : MonoBehaviour
             Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
         }
         if(checkEnd){
+            if(Vector3.Distance(EndIco.position, transform.position) > 75f && !expanding){
+                FindObjectOfType<Goal>().BeginExpand();
+                expanding = true;
+                FindObjectOfType<UIManager>().EnableComing();
+                Debug.Log("IT COMING");
+                range = 10;
+            }
             //raycast from the player to the goal
             RaycastHit hit;
             Physics.Raycast(transform.position, EndIco.position - transform.position, out hit);
-            if(hit.distance < 0.5f)
+            if(hit.distance < range)
             { FindObjectOfType<UIManager>().EnableTransition(); this.enabled = false; }
         }
-
     }
 }

@@ -126,6 +126,13 @@ public class PlayerAi : MonoBehaviour
                 }
             }
         }
+        //get the distance from ground
+        Physics.Raycast(eyePos, Vector3.down, out hit, 100);
+        float dist = Vector3.Distance(transform.position, hit.point);
+        if(dist > 0.7f){
+            aState = state.Idle;
+            move = hit.point + (Vector3.up * 0.5f);
+        }
         Movement(move);
     }
     void Movement(Vector3 target){
@@ -275,11 +282,6 @@ public class PlayerAi : MonoBehaviour
         explorePoints.Add(toConsume);
         Debug.Log($"{toConsume.name} Re added");
     }
-    public void PlatformRemoved(){
-        transform.parent = null;
-        aState = state.Idle;
-        onMovingPlatform = false;
-    }
     public void SetDistraction(Vector3 pos){
         if(aState != state.Goal){
             pos.y += 0.1f;
@@ -300,16 +302,12 @@ public class PlayerAi : MonoBehaviour
             }
         }
     }
-    public void BlockCollide(){
-        aState = state.Idle;
-        onMovingPlatform = false;
-        transform.parent = null;
-    }
+    public void BlockCollide()
+    { aState = state.Idle; onMovingPlatform = false; transform.parent = null; }
     public void ClearLines(){
         for(int i = 0; i < Lines.Count; i++){ Destroy(Lines[i]); }
         Lines.Clear();
     }
-
     void SetLine(int line, Vector3[] positions, Color color)
     {
         LineRenderer LR;
@@ -331,7 +329,4 @@ public class PlayerAi : MonoBehaviour
         StartCoroutine(CheckGoal());
     }
 }
-
-enum state{
-    Goal, Distraction, Idle, Explore
-}
+enum state{ Goal, Distraction, Idle, Explore }

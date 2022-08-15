@@ -16,6 +16,7 @@ public class Goal : MonoBehaviour
         ico.Rotate(Vector3.up, Time.deltaTime * Random.Range(0, 360) * 0.1f);
         ico.Rotate(Vector3.right, Time.deltaTime * Random.Range(0, 360) * 0.1f);
         ico.Rotate(Vector3.forward, Time.deltaTime * Random.Range(0, 360) * 0.1f);
+        
     }
     void OnTriggerEnter(Collider collision)
     {
@@ -45,7 +46,7 @@ public class Goal : MonoBehaviour
     IEnumerator ExpandIco(){
         while(true){
             ico.localScale = Vector3.Lerp(ico.localScale, ico.localScale * 1.2f, 0.1f);
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(0.005f);
         }
     }
 }

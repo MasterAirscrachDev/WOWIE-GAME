@@ -5,11 +5,15 @@ using UnityEngine;
 public class Button : MonoBehaviour
 {
     [SerializeField] GameObject obj;
+
     [SerializeField] float dist, range = 0.3f;
+    [SerializeField] Material[] mats;
     Vector3 compairePoint;
     AudioSource audioSource;
     Transform ai;
     bool reset = false;
+    Renderer rend;
+    int matIndex = 0;
     void Start()
     {
         compairePoint = transform.position + transform.TransformDirection(Vector3.up * 0.5f);
@@ -17,6 +21,8 @@ public class Button : MonoBehaviour
         ai = FindObjectOfType<PlayerAi>().transform;
         audioSource = transform.GetChild(2).GetComponent<AudioSource>();
         audioSource.transform.position = obj.transform.position;
+        //rend = child 1 renderer
+        rend = transform.GetChild(1).GetComponent<Renderer>();
     }
     void Update()
     {
@@ -26,14 +32,18 @@ public class Button : MonoBehaviour
                 //check if any of the objects children are a player
                 for(int i = 0; i < obj.transform.childCount; i++){
                     if(obj.transform.GetChild(i).GetComponent<PlayerAi>()){
-                        obj.transform.GetChild(i).GetComponent<PlayerAi>().PlatformRemoved();
+                        obj.transform.GetChild(i).GetComponent<PlayerAi>().BlockCollide();
                         break;
-                        
                     }
                 }
                 obj.SetActive(!obj.activeSelf);
                 audioSource.Play();
                 reset = true;
+                //switch the material of the button
+                matIndex ++;
+                if(matIndex > mats.Length - 1){ matIndex = 0; }
+                rend.material = mats[matIndex];
+
             }
         }
         else{ reset = false; }
