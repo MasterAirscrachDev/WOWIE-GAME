@@ -9,11 +9,13 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] int nextLevel;
     [SerializeField] Image recticle;
-    [SerializeField] TMP_Text levelText, Coming;
+    [SerializeField] Toggle fpsToggle;
+    [SerializeField] TMP_Text levelText, Coming, FPStext;
     [SerializeField] GameObject sceneTransition, pauseMenu;
     [SerializeField] Slider distract, SFX, Music;
     public bool paused = false;
     Transform playerAI, player;
+    List<float> frames = new List<float>();
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +24,19 @@ public class UIManager : MonoBehaviour
         StartCoroutine(DistractCharge());
         levelText.text = "Level " + SceneManager.GetActiveScene().buildIndex;
         if(sceneTransition.activeSelf){ StartCoroutine(HideSceneTransition()); }
+        StartCoroutine(FPS());
+    }
+    IEnumerator FPS(){
+        yield return new WaitForSeconds(1);
+        int sum = 0;
+        for(int i = 0; i < frames.Count; i++){ sum += (int)frames[i]; }
+        FPStext.text = $"FPS: {Mathf.Round(sum / frames.Count)}";
+        StartCoroutine(FPS());
     }
     void Update(){
+        frames.Add(1 / Time.deltaTime);
+        //if there are more than 50 frames, remove the first one
+        if(frames.Count > 50){ frames.RemoveAt(0); }
         RaycastHit hit;
         //raycast forwards from player
         if(Physics.Raycast(player.position, player.forward, out hit)){
@@ -93,6 +106,16 @@ public class UIManager : MonoBehaviour
         sceneTransition.SetActive(true);
         FindObjectOfType<SceneDataShare>().LoadScene(nextLevel);
 
+    }
+    public void ToggleFPS(bool toggle = false){
+        if(toggle){
+            fpsToggle.isOn = true;
+            FPStext.transform.parent.gameObject.SetActive(true);
+        }
+        else{
+            FPStext.transform.parent.gameObject.SetActive(fpsToggle.isOn );
+        }
+        SceneDataShare.fps = fpsToggle.isOn;
     }
     public void TogglePauseMenu(bool state){
         paused = state;

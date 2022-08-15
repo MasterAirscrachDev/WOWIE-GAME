@@ -9,13 +9,14 @@ public class SceneDataShare : MonoBehaviour
     [SerializeField] AudioSource musicSource;
     public static int songIndex;
     public static float musicVolume = 0.5f, sfxVolume = 0.8f, songProgress;
-    public static bool musicStarted;
+    public static bool musicStarted, fps;
     void Start()
     {
         Application.targetFrameRate = 60;
         try{
             FindObjectOfType<UIManager>().SetMusicVolume( musicVolume );
             FindObjectOfType<UIManager>().SetSFXVolume( sfxVolume );
+            FindObjectOfType<UIManager>().ToggleFPS(fps);
         }
         catch{ Debug.Log("onoh"); }
         
