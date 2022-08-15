@@ -3159,6 +3159,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1835498170, guid: e9fcaf69cf804d94e8cd275def246fdd, type: 3}
+      propertyPath: m_text
+      value: YOU CANT RUN
+      objectReference: {fileID: 0}
     - target: {fileID: 4731300632526760292, guid: e9fcaf69cf804d94e8cd275def246fdd, type: 3}
       propertyPath: nextLevel
       value: 6
