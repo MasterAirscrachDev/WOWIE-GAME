@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MenuUIManager : MonoBehaviour
 {
+    void Start(){
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     [SerializeField] GameObject info;
     // Start is called before the first frame update
     public void Play(){
