@@ -12,32 +12,20 @@ public class InteractibleTile : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        basePosition = transform.position;
-    }
+    { basePosition = transform.position; }
 
     // Update is called once per frame
     void Update()
     {
-        
         transform.position = Vector3.Lerp(transform.position, basePosition + positions[currentPosition], progress);
         progress += speed;
-        if(progress > 1){
-            progress = 1;
-        }
-        if(Vector3.Distance(transform.position, basePosition + positions[currentPosition]) < 0.01f){
-            isMoving = false;
-        }
-        else{
-            isMoving = true;
-        }
+        if(progress > 1){ progress = 1; }
+        if(Vector3.Distance(transform.position, basePosition + positions[currentPosition]) < 0.01f){ isMoving = false; }
+        else{ isMoving = true; }
     }
     public void Interact(){
         currentPosition++;
-        if(currentPosition >= positions.Length){
-            currentPosition = 0;
-            
-        }
+        if(currentPosition >= positions.Length){ currentPosition = 0; }
         progress = 0;
     }
 }

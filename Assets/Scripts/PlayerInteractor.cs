@@ -9,16 +9,11 @@ public class PlayerInteractor : MonoBehaviour
     Transform EndIco;
     // Start is called before the first frame update
     void Start()
-    {
-        clickEffect = GameObject.FindGameObjectWithTag("ClickEffect").transform;
-    }
-    public void RechargeDistract(){
-        distractCharged = true;
-    }
-    public void CheckEnd(Transform endIco){
-        checkEnd = true;
-        EndIco = endIco;
-    }
+    { clickEffect = GameObject.FindGameObjectWithTag("ClickEffect").transform; }
+    public void RechargeDistract()
+    { distractCharged = true; }
+    public void CheckEnd(Transform endIco)
+    { checkEnd = true; EndIco = endIco; }
 
     // Update is called once per frame
     void Update()
@@ -56,15 +51,13 @@ public class PlayerInteractor : MonoBehaviour
                     FindObjectOfType<UIManager>().Distracted();
                 }
                 else
-                {
-                    Debug.Log("Not facing up");
-                }
+                { Debug.Log("Not facing up"); }
             }
         }
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            FindObjectOfType<UIManager>().TogglePauseMenu(!FindObjectOfType<UIManager>().paused);
-        }
-        if(Input.GetKeyDown(KeyCode.F3)){
+        if(Input.GetKeyDown(KeyCode.Escape))
+        { FindObjectOfType<UIManager>().TogglePauseMenu(!FindObjectOfType<UIManager>().paused); }
+        if(Input.GetKeyDown(KeyCode.F3))
+        {
             Cursor.visible = !Cursor.visible;
             Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
         }
@@ -72,10 +65,8 @@ public class PlayerInteractor : MonoBehaviour
             //raycast from the player to the goal
             RaycastHit hit;
             Physics.Raycast(transform.position, EndIco.position - transform.position, out hit);
-            if(hit.distance < 0.5f){
-                FindObjectOfType<UIManager>().EnableTransition();
-                this.enabled = false;
-            }
+            if(hit.distance < 0.5f)
+            { FindObjectOfType<UIManager>().EnableTransition(); this.enabled = false; }
         }
 
     }

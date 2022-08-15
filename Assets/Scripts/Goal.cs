@@ -7,11 +7,7 @@ public class Goal : MonoBehaviour
     Transform ico;
     // Start is called before the first frame update
     void Start()
-    {
-        ico = transform.GetChild(3);
-        ico.localScale = Vector3.zero;
-        ico.gameObject.SetActive(false);
-    }
+    { ico = transform.GetChild(3); ico.localScale = Vector3.zero; ico.gameObject.SetActive(false); }
 
     // Update is called once per frame
     void Update()
@@ -23,13 +19,10 @@ public class Goal : MonoBehaviour
     }
     void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag == "Player"){
-            StartCoroutine(Win());
-        }
+        if(collision.gameObject.tag == "Player"){ StartCoroutine(Win()); }
     }
     IEnumerator Win(){
         yield return new WaitForSeconds(1);
-        Debug.Log("You win!");
         FindObjectOfType<PlayerAi>().ClearLines();
         FindObjectOfType<PlayerAi>().enabled = false;
         Transform player = FindObjectOfType<PlayerAi>().transform;
@@ -47,9 +40,8 @@ public class Goal : MonoBehaviour
         }
         FindObjectOfType<PlayerInteractor>().CheckEnd(ico);
     }
-    public void BeginExpand(){
-        StartCoroutine(ExpandIco());
-    }
+    public void BeginExpand()
+    { StartCoroutine(ExpandIco()); }
     IEnumerator ExpandIco(){
         while(true){
             ico.localScale = Vector3.Lerp(ico.localScale, ico.localScale * 1.2f, 0.1f);

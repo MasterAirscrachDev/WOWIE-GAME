@@ -10,7 +10,6 @@ public class SceneDataShare : MonoBehaviour
     public static int songIndex;
     public static float musicVolume = 0.5f, sfxVolume = 0.8f, songProgress;
     public static bool musicStarted;
-    // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -18,16 +17,13 @@ public class SceneDataShare : MonoBehaviour
             FindObjectOfType<UIManager>().SetMusicVolume( musicVolume );
             FindObjectOfType<UIManager>().SetSFXVolume( sfxVolume );
         }
-        catch{
-            Debug.Log("onoh");
-        }
+        catch{ Debug.Log("onoh"); }
         
         if(!musicStarted){
             musicStarted = true;
             songIndex = Random.Range(0, music.Length);
             musicSource.clip = music[songIndex];
             musicSource.Play();
-            //musicSource.time
         }
         else{
             musicSource.clip = music[songIndex];
@@ -45,9 +41,7 @@ public class SceneDataShare : MonoBehaviour
     {
         if(!musicSource.isPlaying){
             songIndex++;
-            if(songIndex > music.Length - 1){
-                songIndex = 0;
-            }
+            if(songIndex > music.Length - 1){ songIndex = 0; }
             musicSource.clip = music[songIndex];
             musicSource.time = 0;
             musicSource.Play();
