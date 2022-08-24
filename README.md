@@ -4,3 +4,5 @@ if your looking for the full source code to my submission to wowie jam 4.0 then 
 idk what else to say really, if you wanna make a better game with this go right ahead, just be sure to creadit me
 
 also i had to remove the audio so it doesnt get taken
+
+if you wanna play the game the itch page is here: https://masterairscrachdev.itch.io/training-simulation02
